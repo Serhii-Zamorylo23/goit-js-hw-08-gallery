@@ -1,89 +1,112 @@
-const gallery = document.querySelector(".js-gallery")
-const lightbox = document.querySelector(".lightbox")
+const gallery = document.querySelector(".js-gallery");
+const lightbox = document.querySelector(".js-lightbox");
+const lightboxImage = document.querySelector(".lightbox__image");
+const closeButton = document.querySelector('[data-action="close-lightbox"]');
+const closeGallery=document.querySelector("close-lightbox")
 const galleryItems = [
   {
-    preview:
-      'https://cdn.pixabay.com/photo/2019/05/14/16/43/himilayan-blue-poppy-4202825__340.jpg',
-    original:
-      'https://cdn.pixabay.com/photo/2019/05/14/16/43/himilayan-blue-poppy-4202825_1280.jpg',
+    preview:'/src/images/preview blue-flower.jpg',
+    original:'/src/images/original blue flower.jpg',
     description: 'Hokkaido Flower',
   },
   {
-    preview:
-      'https://cdn.pixabay.com/photo/2019/05/14/22/05/container-4203677_1280.jpg',
-    original:
-      'https://cdn.pixabay.com/photo/2019/05/14/16/43/himilayan-blue-poppy-4202825_1280.jpg',
+    preview:'/src/images/preview container.jpg',
+    original:'/src/images/original container.jpg',
     description: 'Container Haulage Freight',
   },
   {
-    preview:
-      'https://cdn.pixabay.com/photo/2019/05/16/09/47/beach-4206785_1280.jpg',
-    original:
-      'https://cdn.pixabay.com/photo/2019/05/16/09/47/beach-4206785_1280.jpg',
+    preview:'/src/images/preview beach.jpg',
+    original:'/src/images/original beach.jpg',
     description: 'Aerial Beach View',
   },
   {
-    preview:
-      ' https://cdn.pixabay.com/photo/2016/11/18/16/19/flowers-1835619_1280.jpghttps://cdn.pixabay.com/photo/2016/11/18/16/19/flowers-1835619__340.jpg',
-    original:
-      'https://cdn.pixabay.com/photo/2016/11/18/16/19/flowers-1835619_1280.jpg',
+    preview:'/src/images//preview flowers purple.jpg',
+    original:'/src/images/original flowers purple.jpg',
     description: 'Flower Blooms',
   },
   {
-    preview:
-      'https://cdn.pixabay.com/photo/2018/09/13/10/36/mountains-3674334__340.jpg',
-    original:
-      'https://cdn.pixabay.com/photo/2018/09/13/10/36/mountains-3674334_1280.jpg',
+    preview:'/src/images/preview mountains.jpg',
+    original:'/src/images/original mountains.jpg',
     description: 'Alpine Mountains',
   },
   {
-    preview:
-      'https://cdn.pixabay.com/photo/2019/05/16/23/04/landscape-4208571__340.jpg',
-    original:
-      'https://cdn.pixabay.com/photo/2019/05/16/23/04/landscape-4208571_1280.jpg',
+    preview:'/src/images/preview landscape.jpg',
+    original:'/src/images/original landscape.jpg',
     description: 'Mountain Lake Sailing',
   },
   {
-    preview:
-      'https://cdn.pixabay.com/photo/2019/05/17/09/27/the-alps-4209272__340.jpg',
-    original:
-      'https://cdn.pixabay.com/photo/2019/05/17/09/27/the-alps-4209272_1280.jpg',
+    preview:'/src/images/preview the-alps.jpg',
+    original:'/src/images/original the-alps.jpg',
     description: 'Alpine Spring Meadows',
   },
   {
-    preview:
-      'https://cdn.pixabay.com/photo/2019/05/16/21/10/landscape-4208255__340.jpg',
-    original:
-      'https://cdn.pixabay.com/photo/2019/05/16/21/10/landscape-4208255_1280.jpg',
+    preview:'/src/images/preview landscape (2).jpg',
+    original:'/src/images/original landscape (2).jpg',
     description: 'Nature Landscape',
   },
   {
-    preview:
-      'https://cdn.pixabay.com/photo/2019/05/17/04/35/lighthouse-4208843__340.jpg',
-    original:
-      'https://cdn.pixabay.com/photo/2019/05/17/04/35/lighthouse-4208843_1280.jpg',
+    preview:'/src/images/preview lighthouse.jpg',
+    original:'/src/images/original lighthouse.jpg',
     description: 'Lighthouse Coast Sea',
   },
 ];
 
-const renderGalleryItems = galleryItems.map(({ preview, original, description,...galleryItems}) => {
-  gallery.innerHTML += `
-  <li class="gallery__item">
-  <a
-    class="gallery__link"
-    href=${original}
-
-    <img
-      class="gallery__image"
-      src=${preview}
-      data-source=${original}
-      alt=${description}
-    />
-  </a>
-</li>
+const renderGalleryItems = galleryItems.map(({ preview, original, description }) => {
+  return `
+    <li class="gallery__item">
+      <a
+        class="gallery__link"
+        href="${original}">
+        <img
+          class="gallery__image"
+          src="${preview}"
+          data-source="${original}"
+          alt="${description}"
+        />
+      </a>
+    </li>
   `;
-})
+}).join(''); // Використовуємо join щоб уникнути додаткових ком та пробілів у кінцевому HTML
 
-lightbox.addEventListener("click", () => {
+// Вставка відрендерених елементів у DOM
+gallery.innerHTML = renderGalleryItems;
 
+// Функція для відкриття модального вікна
+function openLightbox(imageSrc) {
+  lightbox.classList.add('is-open');
+  lightboxImage.src = imageSrc;
+  lightboxImage.alt = imageSrc;
+}
+
+// Функція для закриття модального вікна
+function closeLightbox() {
+  lightbox.classList.remove('is-open');
+  lightboxImage.src = '';
+  lightboxImage.alt = '';
+}
+
+// Обробник подій для кліку на зображеннях галереї
+gallery.addEventListener('click', (event) => {
+  event.preventDefault(); // Зупиняємо стандартну поведінку посилання
+
+  const target = event.target;
+
+  if (target.nodeName !== 'IMG') return; // Переконуємося, що клік був по зображенню
+
+  const imageSrc = target.getAttribute('data-source');
+  openLightbox(imageSrc);
+});
+
+// Обробник подій для закриття модального вікна
+closeButton.addEventListener('click', closeLightbox);
+
+// Закриття модального вікна при кліку поза зображенням
+lightbox.addEventListener('click', (event) => {
+  if (event.target === lightbox) {
+    closeLightbox();
+  }
+});
+
+closeGallery.addEventListener('click',()=>{
+  closeLightbox()
 })
