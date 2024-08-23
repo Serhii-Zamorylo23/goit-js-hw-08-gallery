@@ -2,51 +2,51 @@ const gallery = document.querySelector(".js-gallery");
 const lightbox = document.querySelector(".js-lightbox");
 const lightboxImage = document.querySelector(".lightbox__image");
 const closeButton = document.querySelector('[data-action="close-lightbox"]');
-const closeGallery=document.querySelector("close-lightbox")
+const closeGallery = document.querySelector("close-lightbox")
 const galleryItems = [
   {
-    preview:'/src/images/preview blue-flower.jpg',
-    original:'/src/images/original blue flower.jpg',
+    preview: '/src/images/preview blue-flower.jpg',
+    original: '/src/images/original blue flower.jpg',
     description: 'Hokkaido Flower',
   },
   {
-    preview:'/src/images/preview container.jpg',
-    original:'/src/images/original container.jpg',
+    preview: '/src/images/preview container.jpg',
+    original: '/src/images/original container.jpg',
     description: 'Container Haulage Freight',
   },
   {
-    preview:'/src/images/preview beach.jpg',
-    original:'/src/images/original beach.jpg',
+    preview: '/src/images/preview beach.jpg',
+    original: '/src/images/original beach.jpg',
     description: 'Aerial Beach View',
   },
   {
-    preview:'/src/images//preview flowers purple.jpg',
-    original:'/src/images/original flowers purple.jpg',
+    preview: '/src/images//preview flowers purple.jpg',
+    original: '/src/images/original flowers purple.jpg',
     description: 'Flower Blooms',
   },
   {
-    preview:'/src/images/preview mountains.jpg',
-    original:'/src/images/original mountains.jpg',
+    preview: '/src/images/preview mountains.jpg',
+    original: '/src/images/original mountains.jpg',
     description: 'Alpine Mountains',
   },
   {
-    preview:'/src/images/preview landscape.jpg',
-    original:'/src/images/original landscape.jpg',
+    preview: '/src/images/preview landscape.jpg',
+    original: '/src/images/original landscape.jpg',
     description: 'Mountain Lake Sailing',
   },
   {
-    preview:'/src/images/preview the-alps.jpg',
-    original:'/src/images/original the-alps.jpg',
+    preview: '/src/images/preview the-alps.jpg',
+    original: '/src/images/original the-alps.jpg',
     description: 'Alpine Spring Meadows',
   },
   {
-    preview:'/src/images/preview landscape (2).jpg',
-    original:'/src/images/original landscape (2).jpg',
+    preview: '/src/images/preview landscape (2).jpg',
+    original: '/src/images/original landscape (2).jpg',
     description: 'Nature Landscape',
   },
   {
-    preview:'/src/images/preview lighthouse.jpg',
-    original:'/src/images/original lighthouse.jpg',
+    preview: '/src/images/preview lighthouse.jpg',
+    original: '/src/images/original lighthouse.jpg',
     description: 'Lighthouse Coast Sea',
   },
 ];
@@ -66,47 +66,41 @@ const renderGalleryItems = galleryItems.map(({ preview, original, description })
       </a>
     </li>
   `;
-}).join(''); // Використовуємо join щоб уникнути додаткових ком та пробілів у кінцевому HTML
+}).join('');
 
-// Вставка відрендерених елементів у DOM
 gallery.innerHTML = renderGalleryItems;
 
-// Функція для відкриття модального вікна
 function openLightbox(imageSrc) {
   lightbox.classList.add('is-open');
   lightboxImage.src = imageSrc;
   lightboxImage.alt = imageSrc;
 }
 
-// Функція для закриття модального вікна
 function closeLightbox() {
   lightbox.classList.remove('is-open');
   lightboxImage.src = '';
   lightboxImage.alt = '';
 }
 
-// Обробник подій для кліку на зображеннях галереї
 gallery.addEventListener('click', (event) => {
-  event.preventDefault(); // Зупиняємо стандартну поведінку посилання
+  event.preventDefault();
 
   const target = event.target;
 
-  if (target.nodeName !== 'IMG') return; // Переконуємося, що клік був по зображенню
+  if (target.nodeName !== 'IMG') return;
 
   const imageSrc = target.getAttribute('data-source');
   openLightbox(imageSrc);
 });
 
-// Обробник подій для закриття модального вікна
 closeButton.addEventListener('click', closeLightbox);
 
-// Закриття модального вікна при кліку поза зображенням
 lightbox.addEventListener('click', (event) => {
   if (event.target === lightbox) {
     closeLightbox();
   }
 });
 
-closeGallery.addEventListener('click',()=>{
+closeGallery.addEventListener('click', () => {
   closeLightbox()
 })
