@@ -35,18 +35,18 @@ const galleryItems = [
     description: 'Mountain Lake Sailing',
   },
   {
-    preview: '/src/images/preview the-alps.jpg',
-    original: '/src/images/original the-alps.jpg',
+    preview: '/images/preview the-alps.jpg',
+    original: '/images/original the-alps.jpg',
     description: 'Alpine Spring Meadows',
   },
   {
-    preview: '/src/images/preview landscape (2).jpg',
-    original: '/src/images/original landscape (2).jpg',
+    preview: '/images/preview landscape (2).jpg',
+    original: '/images/original landscape (2).jpg',
     description: 'Nature Landscape',
   },
   {
-    preview: '/src/images/preview lighthouse.jpg',
-    original: '/src/images/original lighthouse.jpg',
+    preview: '/images/preview lighthouse.jpg',
+    original: '/images/original lighthouse.jpg',
     description: 'Lighthouse Coast Sea',
   },
 ];
