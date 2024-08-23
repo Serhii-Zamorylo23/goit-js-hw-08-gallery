@@ -5,48 +5,48 @@ const closeButton = document.querySelector('[data-action="close-lightbox"]');
 const closeGallery = document.querySelector("close-lightbox")
 const galleryItems = [
   {
-    preview: '/images/preview blue-flower.jpg',
-    original: '/images/original blue flower.jpg',
+    preview: './images/preview blue-flower.jpg',
+    original: './images/original blue flower.jpg',
     description: 'Hokkaido Flower',
   },
   {
-    preview: '/images/preview container.jpg',
-    original: '/images/original container.jpg',
+    preview: './images/preview container.jpg',
+    original: './images/original container.jpg',
     description: 'Container Haulage Freight',
   },
   {
-    preview: '/images/preview beach.jpg',
-    original: '/images/original beach.jpg',
+    preview: './images/preview beach.jpg',
+    original: './images/original beach.jpg',
     description: 'Aerial Beach View',
   },
   {
-    preview: '/images/preview flowers purple.jpg',
-    original: '/images/original flowers purple.jpg',
+    preview: './images/preview flowers purple.jpg',
+    original: './images/original flowers purple.jpg',
     description: 'Flower Blooms',
   },
   {
-    preview: '/images/preview mountains.jpg',
-    original: '/images/original mountains.jpg',
+    preview: './images/preview mountains.jpg',
+    original: './images/original mountains.jpg',
     description: 'Alpine Mountains',
   },
   {
-    preview: '/images/preview landscape.jpg',
-    original: '/images/original landscape.jpg',
+    preview: './images/preview landscape.jpg',
+    original: './images/original landscape.jpg',
     description: 'Mountain Lake Sailing',
   },
   {
-    preview: '/images/preview the-alps.jpg',
-    original: '/images/original the-alps.jpg',
+    preview: './images/preview the-alps.jpg',
+    original: './images/original the-alps.jpg',
     description: 'Alpine Spring Meadows',
   },
   {
-    preview: '/images/preview landscape (2).jpg',
-    original: '/images/original landscape (2).jpg',
+    preview: './images/preview landscape (2).jpg',
+    original: './images/original landscape (2).jpg',
     description: 'Nature Landscape',
   },
   {
-    preview: '/images/preview lighthouse.jpg',
-    original: '/images/original lighthouse.jpg',
+    preview: './images/preview lighthouse.jpg',
+    original: './images/original lighthouse.jpg',
     description: 'Lighthouse Coast Sea',
   },
 ];
